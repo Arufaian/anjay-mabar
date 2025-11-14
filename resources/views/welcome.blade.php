@@ -29,7 +29,7 @@
                 <div class="px-4">Navbar Title</div>
             </nav>
             <!-- Page content here -->
-            <div class="p-4">Page Content</div>
+            <div class="p-4">asu lah</div>
         </div>
 
         <div class="drawer-side is-drawer-close:overflow-visible">
