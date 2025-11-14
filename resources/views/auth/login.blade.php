@@ -51,15 +51,27 @@
                 </label>
             </div>
 
-            <div class="form-control mt-6">
-                <button type="submit" class="btn btn-primary w-full">
-                    {{ __('Log in') }}
-                </button>
+
+            <div class="flex gap-4 justify-between">
+                <div class="form-control mt-6 w-full">
+                    <a href="{{ route('register') }}" class="btn btn-secondary w-full">
+                        Sign up
+                    </a>
+                </div>
+
+                <div class="form-control mt-6 w-full">
+                    <button type="submit" class="btn btn-primary w-full">
+                        {{ __('Log in') }}
+                    </button>
+                </div>
             </div>
+
+
+
 
             @if (Route::has('password.request'))
                 <div class="flex justify-center mt-4">
-                    <a class="btn btn-outline w-full font-normal" href="{{ route('password.request') }}">
+                    <a class="btn btn-soft w-full font-normal" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 </div>
