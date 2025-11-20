@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html data-theme="corporate" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -69,7 +69,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header >
+                <header>
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -77,7 +77,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main >
+            <main>
                 {{ $slot }}
             </main>
         </div>
