@@ -21,7 +21,7 @@
         <input class="drawer-toggle" id="my-drawer-4" type="checkbox" />
         <div class="drawer-content">
             <!-- Navbar -->
-            <nav class="navbar w-full bg-base-300">
+            <nav class="navbar w-full bg-base-100 border-l border-base-300">
 
                 <div class="flex items-center justify-between w-full  px-4">
 
@@ -39,7 +39,7 @@
                             <span>SY</span>
                         </div>
 
-                        <ul class="dropdown-content menu bg-base-100 rounded-box w-40 shadow-sm mt-2" tabindex="-1">
+                        <ul class="dropdown-content menu bg-base-200 rounded-box w-40 shadow-sm mt-2" tabindex="-1">
                             <li>
                                 <a class="flex justify-center items-center" href="{{ route('profile.edit') }}">
                                     <x-lucide-user class="w-4 h-4" />
@@ -77,14 +77,14 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="min-h-screen bg-base-300">
                 {{ $slot }}
             </main>
         </div>
 
         <div class="drawer-side is-drawer-close:overflow-visible">
             <label class="drawer-overlay" for="my-drawer-4" aria-label="close sidebar"></label>
-            <div class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+            <div class="flex min-h-full flex-col items-start bg-base-100 is-drawer-close:w-14 is-drawer-open:w-64">
                 <!-- Sidebar content here -->
                 <ul class="menu w-full grow">
                     <!-- Dashboard -->
