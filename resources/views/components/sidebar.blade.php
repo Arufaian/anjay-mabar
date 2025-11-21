@@ -8,14 +8,8 @@
                 <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard"
                     href="{{ route('dashboard') }}">
                     <!-- Dashboard icon -->
-                    <svg class="my-1.5 inline-block size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                        stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"
-                        stroke="currentColor">
-                        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                        <path
-                            d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
-                        </path>
-                    </svg>
+
+                    <x-lucide-layout-dashboard class="my-1.5 inline-block size-4" />
                     <span class="is-drawer-close:hidden">Dashboard</span>
                 </a>
             </li>
@@ -25,12 +19,7 @@
                 <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profile"
                     href="{{ route('profile.edit') }}">
                     <!-- Profile icon -->
-                    <svg class="my-1.5 inline-block size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                        stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"
-                        stroke="currentColor">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
+                    <x-lucide-user-pen class="my-1.5 inline-block size-4" />
                     <span class="is-drawer-close:hidden">Profile</span>
                 </a>
             </li>
@@ -42,13 +31,7 @@
                     <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right w-full text-left"
                         data-tip="Logout" type="submit">
                         <!-- Logout icon -->
-                        <svg class="my-1.5 inline-block size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                            stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none"
-                            stroke="currentColor">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                            <polyline points="16,17 21,12 16,7"></polyline>
-                            <line x1="21" y1="12" x2="9" y2="12"></line>
-                        </svg>
+                        <x-lucide-log-out class="my-1.5 inline-block size-4" />
                         <span class="is-drawer-close:hidden">Logout</span>
                     </button>
                 </form>
