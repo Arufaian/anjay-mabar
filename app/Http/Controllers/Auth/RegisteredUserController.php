@@ -45,14 +45,23 @@ class RegisteredUserController extends Controller
 
         ]);
 
-        if ($userCount >= 1) {
-            $user->assignRole('karyawan');
+        if ($userCount == 0) {
+            $user->assignRole('admin'); // first user is admin
+        } else {
+            $user->assignRole('karyawan'); // subsequent users are karyawan
         }
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirect based on role
+        if ($user->hasRole('admin')) {
+            return redirect(route('admin.dashboard', absolute: false));
+        } elseif ($user->hasRole('karyawan')) {
+            return redirect(route('karyawan.dashboard', absolute: false));
+        } else {
+            return redirect(route('owner.dashboard', absolute: false));
+        }
     }
 }

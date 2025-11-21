@@ -7,8 +7,8 @@
             <ul>
                 <li>
                     <a class=" is-drawer-open:mx-auto flex justify-center" data-tip="Dashboard"
-                        href="{{ route('dashboard') }}">
-                        <x-application-logo class=" inline-block h-10 w-10 my-1 is-drawer-open:p-0 is-drawer-close:p-2 " />
+                        href="">
+                        <x-application-logo class=" inline-block h-10 w-10 my-1 is-drawer-open:p-0 is-drawer-close:p-2 dark:fill-error" />
                     </a>
                 </li>
             </ul>
@@ -19,7 +19,7 @@
                 <!-- Dashboard -->
                 <li>
                     <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard"
-                        href="{{ route('dashboard') }}">
+                        href="">
                         <!-- Dashboard icon -->
 
                         <x-lucide-layout-dashboard class="my-1.5 inline-block size-4" />
@@ -45,7 +45,8 @@
                 <li>
                     <form class="w-full" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right btn btn-error w-full text-left"
+                        <button
+                            class="is-drawer-close:tooltip is-drawer-close:tooltip-right btn btn-error w-full text-left"
                             data-tip="Logout" type="submit">
                             <!-- Logout icon -->
                             <x-lucide-log-out class="my-1.5 inline-block size-4" />
