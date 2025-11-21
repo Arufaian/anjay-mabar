@@ -35,11 +35,19 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // check if there are already user in user table
+        $userCount = User::count();
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
         ]);
+
+        if ($userCount >= 1) {
+            $user->assignRole('karyawan');
+        }
 
         event(new Registered($user));
 
