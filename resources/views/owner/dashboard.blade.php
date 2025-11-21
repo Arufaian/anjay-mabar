@@ -39,6 +39,42 @@
     </x-slot>
 
     <div class="sm:px-6 lg:px-8">
-        <p>owner</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+                class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Data user</div>
+                    <div class="stat-value">User</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Data suplier</div>
+                    <div class="stat-value">Suplier</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Data Barang</div>
+                    <div class="stat-value">Laporan Barang</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </x-app-layout>

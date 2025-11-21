@@ -64,7 +64,7 @@
             <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
                 <div class="stat">
                     <div class="stat-title">Data suplier</div>
-                    <div class="stat-value">Manage suplier</div>
+                    <div class="stat-value">Manage Splier</div>
                     <div class="stat-desc">
                         <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
                     </div>
@@ -73,8 +73,8 @@
 
             <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
                 <div class="stat">
-                    <div class="stat-title">Pengaturan aplikasi</div>
-                    <div class="stat-value">App settings</div>
+                    <div class="stat-title">Manage Barang</div>
+                    <div class="stat-value">Manage Barang</div>
                     <div class="stat-desc">
                         <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
                     </div>
@@ -83,8 +83,8 @@
 
             <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
                 <div class="stat">
-                    <div class="stat-title">Monitoring aktivitas</div>
-                    <div class="stat-value">Activity logs</div>
+                    <div class="stat-title">Monitoring Barang Masuk</div>
+                    <div class="stat-value">Barang Masuk</div>
                     <div class="stat-desc">
                         <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
                     </div>
@@ -93,8 +93,8 @@
 
             <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
                 <div class="stat">
-                    <div class="stat-title">Backup data</div>
-                    <div class="stat-value">Data backup</div>
+                    <div class="stat-title">Monitoring Barang Keluar</div>
+                    <div class="stat-value">Barang Keluar</div>
                     <div class="stat-desc">
                         <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
                     </div>
