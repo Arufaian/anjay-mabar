@@ -6,22 +6,19 @@
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <!-- Password (Hardcoded DaisyUI Fieldset) -->
+        <fieldset class="fieldset mt-4">
+            <legend class="fieldset-legend">{{ __('Password') }}</legend>
+            <input id="password" name="password" type="password" class="input mt-1 w-full" placeholder="{{ __('Enter your password') }}" required autocomplete="current-password" />
+            @error('password')
+                <p class="label text-error">{{ $message }}</p>
+            @enderror
+        </fieldset>
 
         <div class="flex justify-end mt-4">
-            <x-primary-button>
+            <button type="submit" class="btn btn-primary">
                 {{ __('Confirm') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>
