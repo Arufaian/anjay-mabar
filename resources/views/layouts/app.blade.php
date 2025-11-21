@@ -34,7 +34,7 @@
                         </a>
                     </div>
 
-                    <div class="avatar avatar-placeholder dropdown dropdown-hover dropdown-end dropdown-bottom">
+                    <div class="avatar avatar-placeholder dropdown dropdown-end dropdown-bottom">
                         <div class="bg-secondary text-neutral-content w-11 rounded-full" role="button" tabindex="0">
                             <span>SY</span>
                         </div>
