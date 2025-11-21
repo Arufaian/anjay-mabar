@@ -39,6 +39,68 @@
     </x-slot>
 
     <div class="sm:px-6 lg:px-8">
-        <p>admin</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Tambahkan admin</div>
+                    <div class="stat-value">Invite admin</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="{{ route('admin.invite-admin') }}">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Kelola pengguna</div>
+                    <div class="stat-value">User management</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Laporan sistem</div>
+                    <div class="stat-value">System reports</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Pengaturan aplikasi</div>
+                    <div class="stat-value">App settings</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Monitoring aktivitas</div>
+                    <div class="stat-value">Activity logs</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Backup data</div>
+                    <div class="stat-value">Data backup</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </x-app-layout>

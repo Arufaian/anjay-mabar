@@ -7,7 +7,7 @@
             <ul>
                 <li>
                     <a class=" is-drawer-open:mx-auto flex justify-center" data-tip="Dashboard"
-                        href="">
+                        href="/">
                         <x-application-logo class=" inline-block h-10 w-10 my-1 is-drawer-open:p-0 is-drawer-close:p-2 dark:fill-error" />
                     </a>
                 </li>
@@ -19,7 +19,7 @@
                 <!-- Dashboard -->
                 <li>
                     <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard"
-                        href="">
+                        href="/">
                         <!-- Dashboard icon -->
 
                         <x-lucide-layout-dashboard class="my-1.5 inline-block size-4" />
