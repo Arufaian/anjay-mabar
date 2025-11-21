@@ -30,10 +30,6 @@ Route::get('/karyawan/dashboard', function () {
     return view('karyawan.dashboard');
 })->middleware(['auth', 'verified'])->name('karyawan.dashboard');
 
-Route::get('/owner/dashboard', function () {
-    return view('owner.dashboard');
-})->middleware(['auth', 'verified'])->name('owner.dashboard');
-
 // profile config
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,6 +47,15 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::patch('/user-management/{user}', [AdminController::class, 'update'])->name('user-management.update');
     Route::delete('/user-management/{user}', [AdminController::class, 'destroy'])->name('user-management.destroy');
 
+});
+
+// owner routes
+Route::middleware(['auth', 'verified'])->prefix('owner')->name('owner.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('owner.dashboard');
+    })->name('dashboard');
+
+    Route::get('/list-users', [App\Http\Controllers\OwnerController::class, 'listUsers'])->name('list-users');
 });
 
 require __DIR__.'/auth.php';

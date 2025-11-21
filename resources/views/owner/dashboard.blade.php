@@ -47,7 +47,7 @@
                     <div class="stat-title">Data user</div>
                     <div class="stat-value">User</div>
                     <div class="stat-desc">
-                        <a class="hover:underline hover:text-primary" href="">Selengkapnya</a>
+                        <a class="hover:underline hover:text-primary" href="{{ route('owner.list-users') }}">Selengkapnya</a>
                     </div>
                 </div>
             </div>
