@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 //
 Route::get('/admin/dashboard', function () {
+
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
@@ -44,6 +45,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/invite-admin', [AdminController::class, 'index'])->name('invite-admin');
     Route::patch('/invite-admin/{user}', [AdminController::class, 'inviteAdmin'])->name('invite');
+
+    Route::get('/user-management', [AdminController::class, 'userManagement'])->name('user-management.index');
+    Route::post('/user-management', [AdminController::class, 'store'])->name('user-management.store');
+    Route::patch('/user-management/{user}', [AdminController::class, 'update'])->name('user-management.update');
+    Route::delete('/user-management/{user}', [AdminController::class, 'destroy'])->name('user-management.destroy');
 
 });
 

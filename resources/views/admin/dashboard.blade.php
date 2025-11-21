@@ -56,15 +56,15 @@
                     <div class="stat-title">Kelola pengguna</div>
                     <div class="stat-value">User management</div>
                     <div class="stat-desc">
-                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                        <a class="hover:underline hover:text-primary" href="{{ route('admin.user-management.index') }}">Selengkapnya</a>
                     </div>
                 </div>
             </div>
 
             <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
                 <div class="stat">
-                    <div class="stat-title">Laporan sistem</div>
-                    <div class="stat-value">System reports</div>
+                    <div class="stat-title">Data suplier</div>
+                    <div class="stat-value">Manage suplier</div>
                     <div class="stat-desc">
                         <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
                     </div>
