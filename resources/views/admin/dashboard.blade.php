@@ -39,10 +39,5 @@
     </x-slot>
 
     <div class="sm:px-6 lg:px-8">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis explicabo fugiat earum unde
-            adipisci
-            ad debitis enim fugit repellendus dicta deserunt, consequatur ipsa at repellat ipsum, laboriosam sit qui
-            commodi?
-        </p>
     </div>
 </x-app-layout>
