@@ -39,10 +39,68 @@
     </x-slot>
 
     <div class="sm:px-6 lg:px-8">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis explicabo fugiat earum unde
-            adipisci
-            ad debitis enim fugit repellendus dicta deserunt, consequatur ipsa at repellat ipsum, laboriosam sit qui
-            commodi?
-        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Tambahkan admin</div>
+                    <div class="stat-value">Invite admin</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="{{ route('admin.invite-admin') }}">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Kelola pengguna</div>
+                    <div class="stat-value">User management</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="{{ route('admin.user-management.index') }}">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Data suplier</div>
+                    <div class="stat-value">Manage Splier</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Manage Barang</div>
+                    <div class="stat-value">Manage Barang</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Monitoring Barang Masuk</div>
+                    <div class="stat-value">Barang Masuk</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:shadow-primary transition duration-200">
+                <div class="stat">
+                    <div class="stat-title">Monitoring Barang Keluar</div>
+                    <div class="stat-value">Barang Keluar</div>
+                    <div class="stat-desc">
+                        <a class="hover:underline hover:text-primary" href="#">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </x-app-layout>

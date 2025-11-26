@@ -1,20 +1,61 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->hasRole('karyawan')) {
+            return redirect()->route('karyawan.dashboard');
+        } elseif ($user->hasRole('owner')) {
+            return redirect()->route('owner.dashboard');
+        }
+    }
+
+    return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//
+Route::get('/admin/dashboard', function () {
 
+    return view('admin.dashboard');
+})->middleware(['auth', 'verified'])->name('admin.dashboard');
+
+Route::get('/karyawan/dashboard', function () {
+    return view('karyawan.dashboard');
+})->middleware(['auth', 'verified'])->name('karyawan.dashboard');
+
+// profile config
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// admin routes
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/invite-admin', [AdminController::class, 'index'])->name('invite-admin');
+    Route::patch('/invite-admin/{user}', [AdminController::class, 'inviteAdmin'])->name('invite');
+
+    Route::get('/user-management', [AdminController::class, 'userManagement'])->name('user-management.index');
+    Route::post('/user-management', [AdminController::class, 'store'])->name('user-management.store');
+    Route::patch('/user-management/{user}', [AdminController::class, 'update'])->name('user-management.update');
+    Route::delete('/user-management/{user}', [AdminController::class, 'destroy'])->name('user-management.destroy');
+
+});
+
+// owner routes
+Route::middleware(['auth', 'verified'])->prefix('owner')->name('owner.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('owner.dashboard');
+    })->name('dashboard');
+
+    Route::get('/list-users', [App\Http\Controllers\OwnerController::class, 'listUsers'])->name('list-users');
 });
 
 require __DIR__.'/auth.php';
