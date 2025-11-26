@@ -45,7 +45,7 @@
 
             @if (session('status') === 'password-updated')
                 <x-toast>
-                    <x-slot name="alert">
+                    <x-slot :alert>
                         <x-alert type="success" :title="__('Success')" :message="__('Profile updated successfully.')">
                             <x-slot name="icon">
                                 <x-lucide-check-circle class="w-5 h-5" />
