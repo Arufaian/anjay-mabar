@@ -11,7 +11,7 @@
             <x-theme-swapper />
 
             <div class="avatar avatar-placeholder dropdown dropdown-end dropdown-bottom cursor-pointer">
-                <div class="bg-secondary text-neutral-content w-11 rounded-full" role="button" tabindex="0">
+                <div class="bg-secondary text-neutral-content w-10 rounded-full" role="button" tabindex="0">
                     <span>SY</span>
                 </div>
 
