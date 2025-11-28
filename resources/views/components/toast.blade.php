@@ -2,5 +2,7 @@
 
     @if (isset($alert))
         {{ $alert }}
+    @else
+        {{ $slot }}
     @endif
 </div>

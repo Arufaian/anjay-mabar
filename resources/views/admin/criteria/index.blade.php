@@ -23,13 +23,13 @@
         </x-slot>
 
         @if (session('success'))
-            <div class="toast toast-end z-50" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)">
+            <x-toast>
                 <x-alert type="success" :message="session('success')" :title="__('success')">
                     <x-slot name="icon">
                         <x-lucide-check-circle class="w-6 h-6" />
                     </x-slot>
                 </x-alert>
-            </div>
+            </x-toast>
         @endif
 
         <!-- Stats Cards -->
