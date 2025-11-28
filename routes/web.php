@@ -26,6 +26,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::prefix('criteria')->name('criteria.')->group(function () {
         Route::get('/', [CriteriaController::class, 'index'])->name('index');
         Route::post('/', [CriteriaController::class, 'store'])->name('store');
+        Route::delete('/{criteria_id}', [CriteriaController::class, 'destroy'])->name('destroy');
     });
 });
 

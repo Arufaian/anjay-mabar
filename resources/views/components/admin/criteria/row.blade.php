@@ -62,8 +62,8 @@
             </a>
 
             {{-- Delete --}}
-            <form method="POST" action="
-                onsubmit="return confirm('Delete this criteria?')">
+            <form method="POST" action="{{ route('admin.criteria.destroy', $item->id) }}"
+                onsubmit="return confirm('Delete this criteria?') ">
                 @csrf
                 @method('DELETE')
 
