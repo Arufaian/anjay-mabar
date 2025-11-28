@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCriteriaRequest;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('admin.criteria.index', [
+            'criteria' => Criteria::paginate(10),
+        ]);
     }
 
     /**
@@ -26,9 +30,14 @@ class CriteriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCriteriaRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $criteria = Criteria::create($validated);
+
+        return redirect()->route('');
+
     }
 
     /**
