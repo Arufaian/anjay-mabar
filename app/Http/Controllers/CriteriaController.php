@@ -13,20 +13,9 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        // Get the last criteria code to generate the next one
-        $lastCriteria = Criteria::orderBy('code', 'desc')->first();
-        $nextCode = 'C1';
-        
-        if ($lastCriteria) {
-            // Extract the number from the last code (e.g., C3 -> 3)
-            $lastNumber = (int) substr($lastCriteria->code, 1);
-            $nextNumber = $lastNumber + 1;
-            $nextCode = 'C' . $nextNumber;
-        }
 
         return view('admin.criteria.index', [
             'criteria' => Criteria::paginate(10),
-            'nextCode' => $nextCode,
         ]);
     }
 

@@ -1,4 +1,3 @@
-@props(['nextCode'])
 <dialog class="modal" id="modal_create">
     <div class="modal-box">
         <h3 class="font-bold text-lg mb-4">Add New Criteria</h3>
@@ -7,8 +6,8 @@
             <div class="grid gap-2">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Code</legend>
-                    <input type="text" class="input w-full" name="code" value="{{ $nextCode }}" readonly />
-                    <p class="label">Auto-generated</p>
+                    <input type="text" class="input w-full" name="code" placeholder="Enter criteria code" required />
+                    <p class="label">Required</p>
                 </fieldset>
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Name</legend>

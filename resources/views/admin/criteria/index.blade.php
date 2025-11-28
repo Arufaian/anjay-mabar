@@ -64,7 +64,7 @@
     </div>
 
     <!-- Create Modal -->
-    <x-admin.criteria.create-modal :nextCode="$nextCode" />
+    <x-admin.criteria.create-modal />
 
 
 </x-app-layout>
