@@ -22,6 +22,16 @@
 
         </x-slot>
 
+        @if (session('success'))
+            <div class="toast toast-end z-50" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)">
+                <x-alert type="success" :message="session('success')">
+                    <x-slot name="icon">
+                        <x-lucide-check-circle class="w-6 h-6" />
+                    </x-slot>
+                </x-alert>
+            </div>
+        @endif
+
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
@@ -65,6 +75,5 @@
 
     <!-- Create Modal -->
     <x-admin.criteria.create-modal />
-
 
 </x-app-layout>

@@ -36,7 +36,8 @@ class CriteriaController extends Controller
 
         $criteria = Criteria::create($validated);
 
-        return redirect()->route('');
+        return redirect()->route('admin.criteria.index')
+            ->with('success', "Criteria {$criteria->name} created successfully.");
 
     }
 

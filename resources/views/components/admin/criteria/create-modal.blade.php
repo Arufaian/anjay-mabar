@@ -1,17 +1,19 @@
 <dialog class="modal" id="modal_create">
     <div class="modal-box">
         <h3 class="font-bold text-lg mb-4">Add New Criteria</h3>
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('admin.criteria.store') }}">
             @csrf
             <div class="grid gap-2">
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Code</legend>
-                    <input type="text" class="input w-full" name="code" placeholder="Enter criteria code" required />
+                    <input class="input w-full" name="code" type="text" placeholder="Enter criteria code"
+                        required />
                     <p class="label">Required</p>
                 </fieldset>
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Name</legend>
-                    <input type="text" class="input w-full" name="name" placeholder="Enter criteria name" required />
+                    <input class="input w-full" name="name" type="text" placeholder="Enter criteria name"
+                        required />
                     <p class="label">Required</p>
                 </fieldset>
                 <fieldset class="fieldset">
@@ -25,7 +27,7 @@
                 </fieldset>
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Unit</legend>
-                    <input type="text" class="input w-full" name="unit" placeholder="Enter measurement unit" />
+                    <input class="input w-full" name="unit" type="text" placeholder="Enter measurement unit" />
                     <p class="label">Optional</p>
                 </fieldset>
                 <fieldset class="fieldset">
@@ -36,7 +38,8 @@
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Active</legend>
                     <label class="label cursor-pointer">
-                        <input class="checkbox" name="active" type="checkbox" checked />
+                        <input name="active" type="hidden" value="0">
+                        <input class="checkbox" name="active" type="checkbox" value="1" checked />
                         <span class="label-text">Enable this criteria</span>
                     </label>
                 </fieldset>

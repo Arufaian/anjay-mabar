@@ -27,7 +27,7 @@ class StoreCriteriaRequest extends FormRequest
             'type' => 'required|in:benefit,cost',
             'unit' => 'nullable|string',
             'description' => 'nullable|string',
-            'active' => 'boolean',
+            'active' => 'sometimes|boolean',
         ];
     }
 }
