@@ -28,7 +28,7 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div class="stat bg-base-100 shadow-sm rounded-lg">
+            {{-- <div class="stat bg-base-100 shadow-sm rounded-lg">
                 <div class="stat-figure text-primary">
                     <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -38,43 +38,40 @@
                 </div>
                 <div class="stat-title">Total Criteria</div>
                 <div class="stat-value text-primary">{{ $criteria->count() }}</div>
-            </div>
+            </div> --}}
 
-            <div class="stat bg-base-100 shadow-sm rounded-lg">
-                <div class="stat-figure text-success">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <div class="stat-title">Active</div>
-                <div class="stat-value text-success">{{ $criteria->where('active', true)->count() }}</div>
-            </div>
+            <x-admin.stats-card :title="'total criteria'" :value="$criteria->count()" color="text-primary">
 
-            <div class="stat bg-base-100 shadow-sm rounded-lg">
-                <div class="stat-figure text-warning">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <div class="stat-title">Inactive</div>
-                <div class="stat-value text-warning">{{ $criteria->where('active', false)->count() }}</div>
-            </div>
+                <x-slot name="icon">
+                    <x-lucide-clipboard-list class="w-8 h-8" />
+                </x-slot>
 
-            <div class="stat bg-base-100 shadow-sm rounded-lg">
-                <div class="stat-figure text-info">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
-                <div class="stat-title">Types</div>
-                <div class="stat-value text-info">{{ $criteria->pluck('type')->unique()->count() }}</div>
-            </div>
+            </x-admin.stats-card>
+
+            <x-admin.stats-card :title="'active criteria'" :value="$criteria->where('active', true)->count()" color="text-accent">
+
+                <x-slot name="icon">
+                    <x-lucide-monitor-check class="w-8 h-8" />
+                </x-slot>
+
+            </x-admin.stats-card>
+
+            <x-admin.stats-card :title="'inactive criteria'" :value="$criteria->where('active', false)->count()" color="text-warning">
+
+                <x-slot name="icon">
+                    <x-lucide-monitor-off class="w-8 h-8" />
+                </x-slot>
+
+            </x-admin.stats-card>
+
+            <x-admin.stats-card :title="'types'" :value="$criteria->pluck('type')->unique()->count()" color="text-primary">
+
+                <x-slot name="icon">
+                    <x-lucide-clipboard-type class="w-8 h-8" />
+                </x-slot>
+
+            </x-admin.stats-card>
+
         </div>
 
         <!-- Table Section -->
@@ -158,8 +155,8 @@
                                     <td>
                                         <div class="flex justify-end gap-1">
                                             <button class="btn btn-ghost btn-xs btn-circle" title="View">
-                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -168,16 +165,16 @@
                                                 </svg>
                                             </button>
                                             <button class="btn btn-ghost btn-xs btn-circle" title="Edit">
-                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
                                                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                 </svg>
                                             </button>
                                             <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete">
-                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
                                                         d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -213,7 +210,8 @@
                     <div class="p-4 border-t border-base-200">
                         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
                             <div class="text-sm text-base-content/70">
-                                Showing {{ $criteria->firstItem() }} to {{ $criteria->lastItem() }} of {{ $criteria->total() }} results
+                                Showing {{ $criteria->firstItem() }} to {{ $criteria->lastItem() }} of
+                                {{ $criteria->total() }} results
                             </div>
                             <div class="join">
                                 <button class="join-item btn btn-sm">«</button>
