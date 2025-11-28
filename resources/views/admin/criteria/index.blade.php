@@ -28,17 +28,6 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            {{-- <div class="stat bg-base-100 shadow-sm rounded-lg">
-                <div class="stat-figure text-primary">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                </div>
-                <div class="stat-title">Total Criteria</div>
-                <div class="stat-value text-primary">{{ $criteria->count() }}</div>
-            </div> --}}
 
             <x-admin.stats-card :title="'total criteria'" :value="$criteria->count()" color="text-primary">
 
@@ -137,9 +126,10 @@
                                     </td>
                                     <td>
                                         @if ($item->type === 'benefit')
-                                            <span class="badge badge-success badge-sm">Benefit</span>
+                                            <x-badge color="success" size="sm">Benefit</x-badge>
+                                            
                                         @else
-                                            <span class="badge badge-error badge-sm">Cost</span>
+                                            <x-badge color="error" class="text-base-100 dark:text-black" size="sm">Cost</x-badge>
                                         @endif
                                     </td>
                                     <td>
@@ -147,9 +137,9 @@
                                     </td>
                                     <td>
                                         @if ($item->active)
-                                            <span class="badge badge-primary badge-sm">Active</span>
+                                            <x-badge color="primary" size="sm">Active</x-badge>
                                         @else
-                                            <span class="badge badge-ghost badge-sm">Inactive</span>
+                                            <x-badge color="ghost" size="sm">Inactive</x-badge>
                                         @endif
                                     </td>
                                     <td>
@@ -229,58 +219,79 @@
 
     <!-- Create Modal -->
     <dialog class="modal" id="modal_create">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg mb-4">Add New Criteria</h3>
+        <div class="modal-box w-11/12 max-w-2xl">
+            <h3 class="font-bold text-lg mb-6">Add New Criteria</h3>
             <form method="POST" action="">
                 @csrf
                 <div class="grid gap-4">
+                    <!-- Code Input -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">Code</span>
+                            <span class="label-text font-medium">Code</span>
                         </label>
-                        <input class="input input-bordered" name="code" type="text" required />
+                        <input class="input input-bordered input-sm w-full"  type="text" required />
                     </div>
+
+                    <fieldset class="fieldset">
+                        <legend class="fieldset-legend">Kode kriteria</legend>
+                        <input class="input w-full" type="text" placeholder="masukan code untuk kriteria" name="code" required/>
+                    </fieldset>
+
+                    <!-- Name Input -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">Name</span>
+                            <span class="label-text font-medium">Name</span>
                         </label>
-                        <input class="input input-bordered" name="name" type="text" required />
+                        <input class="input input-bordered input-sm w-full" name="name" type="text" required />
                     </div>
+
+                    <!-- Type Select -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">Type</span>
+                            <span class="label-text font-medium">Type</span>
                         </label>
-                        <select class="select select-bordered" name="type" required>
+                        <select class="select select-bordered select-sm w-full" name="type" required>
                             <option value="">Select Type</option>
                             <option value="benefit">Benefit</option>
                             <option value="cost">Cost</option>
                         </select>
                     </div>
+
+                    <!-- Unit Input -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">Unit</span>
+                            <span class="label-text font-medium">Unit</span>
                         </label>
-                        <input class="input input-bordered" name="unit" type="text" />
+                        <input class="input input-bordered input-sm w-full" name="unit" type="text" />
                     </div>
+
+                    <!-- Description Textarea -->
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">Description</span>
+                            <span class="label-text font-medium">Description</span>
                         </label>
-                        <textarea class="textarea textarea-bordered" name="description" rows="3"></textarea>
+                        <textarea class="textarea textarea-bordered textarea-sm w-full" name="description" rows="3"></textarea>
                     </div>
-                    <div class="form-control">
-                        <label class="label cursor-pointer">
-                            <span class="label-text">Active</span>
-                            <input class="checkbox" name="active" type="checkbox" checked />
+
+                    <!-- Active Checkbox -->
+                    <div class="form-control mt-2">
+                        <label class="label cursor-pointer justify-start gap-3">
+                            <input class="checkbox checkbox-sm" name="active" type="checkbox" checked />
+                            <span class="label-text font-medium">Active</span>
                         </label>
                     </div>
                 </div>
-                <div class="modal-action">
-                    <button class="btn" type="button" onclick="modal_create.close()">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
+
+                <!-- Modal Actions -->
+                <div class="modal-action mt-6">
+                    <button class="btn btn-outline btn-sm" type="button"
+                        onclick="modal_create.close()">Cancel</button>
+                    <button class="btn btn-primary btn-sm" type="submit">Save</button>
                 </div>
             </form>
         </div>
+
+        <!-- Modal Backdrop -->
         <form class="modal-backdrop" method="dialog">
             <button>close</button>
         </form>
