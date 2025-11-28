@@ -46,19 +46,13 @@
     </td>
 
     {{-- Actions --}}
-    <td class="text-right">
+    <td class="text-center">
         <div class="flex justify-end gap-1">
 
-            {{-- View --}}
-            <a class="btn btn-ghost btn-xs btn-circle" href="
-                title="View">
-                <x-lucide-eye class="w-4 h-4" />
-            </a>
-
             {{-- Edit --}}
-            <a class="btn btn-ghost btn-xs btn-circle" href=""
+            <a class="btn btn-ghost btn-xs btn-circle" href="{{ route('admin.criteria.edit', $item->id) }}"
                 title="Edit">
-                <x-lucide-pencil class="w-4 h-4" />
+                <x-lucide-pencil class="w-4 h-4 text-warning" />
             </a>
 
             {{-- Delete --}}
@@ -67,7 +61,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button type="submit" class="btn btn-ghost btn-xs btn-circle text-error" title="Delete">
+                <button class="btn btn-ghost btn-xs btn-circle text-error" type="submit" title="Delete">
                     <x-lucide-trash class="w-4 h-4" />
                 </button>
             </form>

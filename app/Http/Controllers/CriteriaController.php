@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCriteriaRequest;
+use App\Http\Requests\UpdateCriteriaRequest;
 use App\Models\Criteria;
-use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
 {
@@ -54,15 +54,22 @@ class CriteriaController extends Controller
      */
     public function edit(Criteria $criteria)
     {
-        //
+        return view('admin.criteria.update', [
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Criteria $criteria)
+    public function update(UpdateCriteriaRequest $request, Criteria $criteria)
     {
-        //
+        $validated = $request->validated();
+
+        $criteria->update($validated);
+
+        return redirect()->route('admin.criteria.index')
+            ->with('success', "Criteria {$criteria->name} updated successfully.");
     }
 
     /**

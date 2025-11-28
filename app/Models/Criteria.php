@@ -11,4 +11,11 @@ class Criteria extends Model
     public $fillable = [
         'code', 'name', 'type', 'unit', 'description', 'active',
     ];
+
+    public function alternatives()
+    {
+        return $this->belongsToMany(Alternative::class, 'alternative_values')
+            ->withPivot('value')
+            ->withTimestamps();
+    }
 }

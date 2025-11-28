@@ -11,7 +11,7 @@ class UpdateCriteriaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateCriteriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'code' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'type' => 'required|in:benefit,cost',
+            'unit' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'active' => 'boolean',
         ];
     }
 }
