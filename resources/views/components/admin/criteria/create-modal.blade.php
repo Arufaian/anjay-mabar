@@ -5,6 +5,7 @@
             @csrf
             <div class="grid gap-2">
                 <fieldset class="fieldset">
+
                     <legend class="fieldset-legend">Code</legend>
                     <input class="input w-full" name="code" type="text" placeholder="Enter criteria code"
                         required />
