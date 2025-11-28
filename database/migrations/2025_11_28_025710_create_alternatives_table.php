@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('alternatives', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 30)->unique(); // mis. ALT-001
+            $table->string('name', 150); // mis. "Yamaha Mio M3"
+            $table->string('model')->nullable();
+            $table->year('year')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

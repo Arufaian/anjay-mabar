@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('criteria', function (Blueprint $table) {
             $table->id();
+            $table->string('code', 10)->unique();
+            $table->string('name', 100);
+            $table->enum('type', ['benefit', 'cost'])->default('cost');
+            $table->string('unit', 30)->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
