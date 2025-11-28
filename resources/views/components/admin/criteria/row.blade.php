@@ -67,7 +67,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete">
+                <button type="submit" class="btn btn-ghost btn-xs btn-circle text-error" title="Delete">
                     <x-lucide-trash class="w-4 h-4" />
                 </button>
             </form>
