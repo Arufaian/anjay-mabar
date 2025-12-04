@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,18 +17,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
 
-    Route::prefix('criteria')->name('criteria.')->group(function () {
-        Route::get('/', [CriteriaController::class, 'index'])->name('index');
-        Route::get('/{criteria}/edit', [CriteriaController::class, 'edit'])->name('edit');
-        Route::post('/', [CriteriaController::class, 'store'])->name('store');
-        Route::put('/{criteria}', [CriteriaController::class, 'update'])->name('update');
-        Route::delete('/{criteria}', [CriteriaController::class, 'destroy'])->name('destroy');
-    });
-});
 
 require __DIR__.'/auth.php';
