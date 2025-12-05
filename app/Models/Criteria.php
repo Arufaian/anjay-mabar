@@ -18,4 +18,9 @@ class Criteria extends Model
             ->withPivot('value')
             ->withTimestamps();
     }
+
+    public function weight()
+    {
+        return $this->hasOne(Weights::class, 'criteria_id');
+    }
 }
