@@ -13,10 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
             $router->middleware('web')
                 ->group(__DIR__.'/../routes/web.php');
 
-
-
             // grouping admin routes
-            $router->middleware('web')
+            $router->middleware(['web', 'auth', 'role.redirect'])
                 ->prefix('admin')
                 ->name('admin.')
                 ->group(function () use ($router) {
@@ -35,6 +33,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            'role.redirect' => \App\Http\Middleware\RedirectByRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
