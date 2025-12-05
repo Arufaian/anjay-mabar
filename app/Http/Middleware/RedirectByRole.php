@@ -15,7 +15,6 @@ class RedirectByRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // return $next($request);
         $user = $request->user();
 
         if (! $user) {
