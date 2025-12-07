@@ -12,19 +12,26 @@ class WeightsController extends Controller
     public function index()
     {
         $criteria = Criteria::with('weight')->orderBy('code')->get();
-        return view('admin.weight', compact('criteria'));
+
+        // Prepare data for chart
+        $chartLabels = $criteria->pluck('name')->toArray();
+        $chartData = $criteria->map(function ($c) {
+            return $c->weight ? (float) $c->weight->weight : 0;
+        })->toArray();
+
+        return view('admin.weight', compact('criteria', 'chartLabels', 'chartData'));
     }
 
     public function update(Request $request)
     {
         $weights = $request->input('weights', []);
-        
+
         // Validate that sum equals exactly 1.00
         $sum = 0;
         foreach ($weights as $weight) {
             $sum += (float) $weight;
         }
-        
+
         if (bccomp((string) $sum, '1.00', 6) !== 0) {
             return back()
                 ->with('error', 'Total weights must equal exactly 1.00')
@@ -38,7 +45,7 @@ class WeightsController extends Controller
                     [
                         'weight' => $weight,
                         'method' => 'manual',
-                        'source' => 'admin_input'
+                        'source' => 'admin_input',
                     ]
                 );
             }

@@ -16,7 +16,8 @@ class Weights extends Model
 
     ];
 
-    public function criteria() {
+    public function criteria()
+    {
         return $this->belongsTo(Criteria::class, 'criteria_id');
     }
 }
