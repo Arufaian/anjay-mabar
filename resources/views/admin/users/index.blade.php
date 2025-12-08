@@ -1,6 +1,5 @@
 <x-app-layout>
 
-
     <div class="px-4 sm:px-6 lg:px-8 py-4">
         <!-- Header Section -->
         <x-slot name="header">
@@ -176,9 +175,10 @@
                                     <td class="text-center">
                                         <div class="flex justify-end gap-1">
                                             {{-- Edit --}}
-                                            <button class="btn btn-ghost btn-xs btn-circle" title="Edit" disabled>
+                                            <a class="btn btn-ghost btn-xs btn-circle"
+                                                href="{{ route('admin.users.edit', $user->id) }}" title="Edit">
                                                 <x-lucide-pencil class="w-4 h-4 text-warning" />
-                                            </button>
+                                            </a>
 
                                             {{-- Delete --}}
                                             <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete"
@@ -219,9 +219,9 @@
 
                 </div>
             </div>
-    </div>
+        </div>
 
-    <!-- Create User Modal -->
-    <x-admin.users.create-modal />
+        <!-- Create User Modal -->
+        <x-admin.users.create-modal />
 
-</x-app-layout>
+    </x-app-layout>

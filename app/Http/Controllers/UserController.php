@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -80,15 +81,43 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $hasOwner = User::where('role', 'owner')->exists();
+
+        return view('admin.users.edit', compact('user', 'hasOwner'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $validated = $request->validated();
+
+        // Check if trying to set role to owner when owner already exists
+        if (isset($validated['role']) && $validated['role'] === 'owner') {
+            $existingOwner = User::where('role', 'owner')->where('id', '!=', $user->id)->first();
+            if ($existingOwner) {
+                return redirect()
+                    ->back()
+                    ->withErrors(['role' => 'An owner already exists in the system.'])
+                    ->withInput();
+            }
+        }
+
+        // Only update password if provided
+        if (isset($validated['password']) && ! empty($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        $user->update($validated);
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User updated successfully.');
     }
 
     /**
