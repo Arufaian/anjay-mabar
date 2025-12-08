@@ -83,7 +83,7 @@
                                                     value="{{ $criterion->weight ? $criterion->weight->weight : 0 }}"
                                                     min="0" max="1" step="0.01" placeholder="0.00"
                                                     required />
-                                                <p class="fieldset-label">Weight for {{ $criterion->name }} criteria</p>
+                                                <p class="fieldset-label">bobot untuk kriteria {{ $criterion->name }}</p>
                                             </fieldset>
                                         </div>
                                     @endforeach
@@ -95,7 +95,7 @@
                                 <x-lucide-info class="w-4 h-4" />
                                 <div>
                                     <p class="text-sm font-medium">Important: Total weights must equal exactly 1.00</p>
-                                    <p class="text-xs text-base-content/70 mt-1">The system will validate that the sum
+                                    <p class="text-xs  mt-1">The system will validate that the sum
                                         of all weights equals 1.00 before saving.</p>
                                 </div>
                             </div>
