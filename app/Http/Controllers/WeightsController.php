@@ -2,64 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Criteria;
 use App\Models\Weights;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WeightsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $criteria = Criteria::with('weight')->orderBy('code')->get();
+
+        // Prepare data for chart
+        $chartLabels = $criteria->pluck('name')->toArray();
+        $chartData = $criteria->map(function ($c) {
+            return $c->weight ? (float) $c->weight->weight : 0;
+        })->toArray();
+
+        return view('admin.weight', compact('criteria', 'chartLabels', 'chartData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update(Request $request)
     {
-        //
-    }
+        $weights = $request->input('weights', []);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Validate that sum equals exactly 1.00
+        $sum = 0;
+        foreach ($weights as $weight) {
+            $sum += (float) $weight;
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Weights $weights)
-    {
-        //
-    }
+        if (bccomp((string) $sum, '1.00', 6) !== 0) {
+            return back()
+                ->with('error', 'Total weights must equal exactly 1.00')
+                ->withInput();
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Weights $weights)
-    {
-        //
-    }
+        DB::transaction(function () use ($weights) {
+            foreach ($weights as $criteriaId => $weight) {
+                Weights::updateOrCreate(
+                    ['criteria_id' => $criteriaId],
+                    [
+                        'weight' => $weight,
+                        'method' => 'manual',
+                        'source' => 'admin_input',
+                    ]
+                );
+            }
+        });
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Weights $weights)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Weights $weights)
-    {
-        //
+        return back()->with('success', 'Weights updated successfully');
     }
 }

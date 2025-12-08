@@ -37,6 +37,8 @@
         <x-sidebar />
 
     </div>
+    
+    @stack('scripts')
 </body>
 
 </html>
