@@ -1,6 +1,5 @@
 <x-app-layout>
 
-    {{ dd($users) }}
 
     <div class="px-4 sm:px-6 lg:px-8 py-4">
         <!-- Header Section -->
@@ -13,7 +12,7 @@
                             <p class="text-base-content/70 mt-1">Manage system users and their roles</p>
                         </div>
                         <div class="flex gap-2">
-                            <button class="btn btn-primary btn-sm" disabled>
+                            <button class="btn btn-primary btn-sm" onclick="modal_create_user.showModal()">
                                 <x-lucide-plus class="w-4 h-4 mr-1" />
                                 Add User
                             </button>
@@ -220,6 +219,9 @@
 
                 </div>
             </div>
-        </div>
+    </div>
 
-    </x-app-layout>
+    <!-- Create User Modal -->
+    <x-admin.users.create-modal />
+
+</x-app-layout>
