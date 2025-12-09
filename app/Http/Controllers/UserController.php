@@ -125,6 +125,19 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        // Prevent deletion of the last owner
+        if ($user->role === 'owner') {
+            return redirect()
+                ->route('admin.users.index')
+                ->withErrors(['delete' => 'Cannot delete the owner user.']);
+        }
+
+        $user->delete();
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User deleted successfully.');
     }
 }
