@@ -181,10 +181,19 @@
                                             </a>
 
                                             {{-- Delete --}}
-                                            <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete"
-                                                disabled>
-                                                <x-lucide-trash class="w-4 h-4" />
-                                            </button>
+                                            @if($user->role !== 'owner')
+                                                <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete" onclick="document.getElementById('modal_delete_user_{{ $user->id }}').showModal()">
+                                                    <x-lucide-trash class="w-4 h-4" />
+                                                </button>
+                                            @endif
+
+                                            @if($user->role === 'owner')
+                                                <button class="btn btn-ghost btn-xs btn-circle text-error" 
+                                                    title="Cannot delete owner"
+                                                    disabled>
+                                                    <x-lucide-trash class="w-4 h-4" />
+                                                </button>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -223,5 +232,10 @@
 
         <!-- Create User Modal -->
         <x-admin.users.create-modal />
+
+        <!-- Delete User Modals -->
+        @foreach($users as $user)
+            <x-admin.users.delete-modal :user="$user" />
+        @endforeach
 
     </x-app-layout>
