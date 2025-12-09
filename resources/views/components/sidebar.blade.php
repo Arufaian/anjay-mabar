@@ -18,8 +18,8 @@
             <ul>
                 <!-- Admin Menu Items -->
                 @foreach ($adminMenuItems as $item)
-                    <li class="py-2">
-                        <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right {{ request()->routeIs($item['route']) ? 'menu-active bg-primary dark:text-base-100' : '' }}" data-tip="{{ $item['name'] }}"
+                    <li >
+                        <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2 my-2 {{ request()->routeIs($item['route']) ? 'menu-active bg-primary dark:text-base-100' : '' }}" data-tip="{{ $item['name'] }}"
                             href="{{ route($item['route']) }}">
                             <x-dynamic-component class="w-4 h-4" :component="'lucide-' . $item['icon']" />
 
