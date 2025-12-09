@@ -11,8 +11,8 @@
             <x-theme-swapper />
 
             <div class="avatar avatar-placeholder dropdown dropdown-end dropdown-bottom cursor-pointer">
-                <div class="bg-secondary text-neutral-content w-10 rounded-full" role="button" tabindex="0">
-                    <span>SY</span>
+                <div class="bg-secondary text-base-100 w-10 rounded-full" role="button" tabindex="0">
+                    <span>{{ strtoupper(substr(auth()->user()->name, 0, 2)) }}</span>
                 </div>
 
                 <ul class="dropdown-content menu bg-base-200 rounded-box w-40 shadow-sm mt-2" tabindex="-1">

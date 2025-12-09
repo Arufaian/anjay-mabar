@@ -14,7 +14,6 @@ class StatsCard extends Component
 
     public ?string $value;
 
-
     public string $icon;
 
     public string $color;
