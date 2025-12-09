@@ -8,7 +8,7 @@
                 <li>
                     <a class=" is-drawer-open:mx-auto flex justify-center" data-tip="Dashboard" href="/">
                         <x-application-logo
-                            class=" inline-block h-10 w-10 my-1 is-drawer-open:p-0 is-drawer-close:p-2 dark:fill-error" />
+                            class=" inline-block h-10 w-10 my-1 is-drawer-open:p-0 is-drawer-close:p-2 fill-error" />
                     </a>
                 </li>
             </ul>
@@ -37,7 +37,7 @@
                     <form class="w-full" method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button
-                            class="is-drawer-close:tooltip is-drawer-close:tooltip-right btn btn-error w-full text-left"
+                            class="is-drawer-close:tooltip is-drawer-close:tooltip-right btn btn-outline btn-error w-full text-left"
                             data-tip="Logout" type="submit">
                             <!-- Logout icon -->
                             <x-lucide-log-out class="my-1.5 inline-block size-4" />
