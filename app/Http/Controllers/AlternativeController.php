@@ -17,8 +17,8 @@ class AlternativeController extends Controller
             ->when(request('search'), function ($query, $search) {
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
-                      ->orWhere('code', 'like', "%{$search}%")
-                      ->orWhere('model', 'like', "%{$search}%");
+                        ->orWhere('code', 'like', "%{$search}%")
+                        ->orWhere('model', 'like', "%{$search}%");
                 });
             })
             ->when(request('type'), function ($query, $type) {
@@ -56,7 +56,7 @@ class AlternativeController extends Controller
         // Generate automatic code
         $lastCode = Alternative::orderByRaw('CAST(SUBSTRING(code, 2) AS UNSIGNED) DESC')->value('code');
         $lastNumber = $lastCode ? intval(substr($lastCode, 1)) : 0;
-        $newCode = 'A' . ($lastNumber + 1);
+        $newCode = 'A'.($lastNumber + 1);
 
         // Create alternative
         Alternative::create([
@@ -70,7 +70,7 @@ class AlternativeController extends Controller
 
         return redirect()
             ->route('admin.alternative.index')
-            ->with('success', 'Alternative "' . $request->name . '" has been created successfully.');
+            ->with('success', 'Alternative "'.$request->name.'" has been created successfully.');
     }
 
     /**
@@ -78,7 +78,13 @@ class AlternativeController extends Controller
      */
     public function show(Alternative $alternative)
     {
-        //
+        $alternative->load(['alternativeValues.criteria']);
+        $criteriaCount = \App\Models\Criteria::count();
+
+        return view('admin.alternative.show', [
+            'alternative' => $alternative,
+            'criteriaCount' => $criteriaCount,
+        ]);
     }
 
     /**
