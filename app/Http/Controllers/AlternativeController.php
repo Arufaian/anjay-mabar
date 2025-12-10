@@ -12,7 +12,31 @@ class AlternativeController extends Controller
      */
     public function index()
     {
-        //
+        $alternatives = Alternative::with(['alternativeValues.criteria'])
+            ->when(request('search'), function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('code', 'like', "%{$search}%")
+                      ->orWhere('model', 'like', "%{$search}%");
+                });
+            })
+            ->when(request('type'), function ($query, $type) {
+                $query->where('type', $type);
+            })
+            ->when(request('year'), function ($query, $year) {
+                $query->where('year', $year);
+            })
+            ->orderBy('code')
+            ->paginate(10);
+
+        $types = Alternative::distinct()->pluck('type')->filter();
+        $years = Alternative::distinct()->pluck('year')->filter()->sortDesc();
+
+        return view('admin.alternative.index', [
+            'alternatives' => $alternatives,
+            'types' => $types,
+            'years' => $years,
+        ]);
     }
 
     /**
