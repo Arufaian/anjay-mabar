@@ -110,7 +110,7 @@ class AlternativeController extends Controller
     {
         // Alternative values akan terhapus otomatis karena cascade delete
         $alternative->delete();
-        
+
         return redirect()
             ->route('admin.alternative.index')
             ->with('success', 'Alternative "'.$alternative->name.'" has been deleted successfully.');
