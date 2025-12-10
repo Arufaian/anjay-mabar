@@ -14,4 +14,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/admin/dashboard.php';
+require __DIR__.'/admin/users.php';
+require __DIR__.'/admin/criteria.php';
+require __DIR__.'/admin/weight.php';
 require __DIR__.'/auth.php';

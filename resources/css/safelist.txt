@@ -1,0 +1,36 @@
+<!-- DaisyUI Color Classes Safelist -->
+<!-- Background colors -->
+bg-primary bg-secondary bg-accent bg-neutral bg-info bg-success bg-warning bg-error
+
+<!-- Text colors -->
+text-primary text-secondary text-accent text-neutral text-info text-success text-warning text-error
+
+<!-- Border colors -->
+border-primary border-secondary border-accent border-neutral border-info border-success border-warning border-error
+
+<!-- Badge colors -->
+badge-primary badge-secondary badge-accent badge-neutral badge-info badge-success badge-warning badge-error
+
+<!-- Hover variants -->
+hover:bg-primary hover:bg-secondary hover:bg-accent hover:bg-neutral hover:bg-info hover:bg-success hover:bg-warning hover:bg-error
+hover:text-primary hover:text-secondary hover:text-accent hover:text-neutral hover:text-info hover:text-success hover:text-warning hover:text-error
+hover:border-primary hover:border-secondary hover:border-accent hover:border-neutral hover:border-info hover:border-success hover:border-warning hover:border-error
+
+<!-- Group hover variants -->
+group-hover:bg-primary group-hover:bg-secondary group-hover:bg-accent group-hover:bg-neutral group-hover:bg-info group-hover:bg-success group-hover:bg-warning group-hover:bg-error
+group-hover:text-primary group-hover:text-secondary group-hover:text-accent group-hover:text-neutral group-hover:text-info group-hover:text-success group-hover:text-warning group-hover:text-error
+group-hover:border-primary group-hover:border-secondary group-hover:border-accent group-hover:border-neutral group-hover:border-info group-hover:border-success group-hover:border-warning group-hover:border-error
+
+<!-- Ring variants with opacity -->
+ring-primary ring-secondary ring-accent ring-neutral ring-info ring-success ring-warning ring-error
+hover:ring-primary hover:ring-secondary hover:ring-accent hover:ring-neutral hover:ring-info hover:ring-success hover:ring-warning hover:ring-error
+group-hover:ring-primary group-hover:ring-secondary group-hover:ring-accent group-hover:ring-neutral group-hover:ring-info group-hover:ring-success group-hover:ring-warning group-hover:ring-error
+
+<!-- Ring variants with opacity /50 -->
+ring-primary/50 ring-secondary/50 ring-accent/50 ring-neutral/50 ring-info/50 ring-success/50 ring-warning/50 ring-error/50
+hover:ring-primary/50 hover:ring-secondary/50 hover:ring-accent/50 hover:ring-neutral/50 hover:ring-info/50 hover:ring-success/50 hover:ring-warning/50 hover:ring-error/50
+group-hover:ring-primary/50 group-hover:ring-secondary/50 group-hover:ring-accent/50 group-hover:ring-neutral/50 group-hover:ring-info/50 group-hover:ring-success/50 group-hover:ring-warning/50 group-hover:ring-error/50
+
+<!-- Content colors -->
+text-primary-content text-secondary-content text-accent-content text-neutral-content text-info-content text-success-content text-warning-content text-error-content
+bg-primary-content bg-secondary-content bg-accent-content bg-neutral-content bg-info-content bg-success-content bg-warning-content bg-error-content
