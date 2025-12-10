@@ -40,6 +40,11 @@
         <!-- create alternative modal -->
         <x-admin.alternative.create-modal />
 
+        <!-- Delete Alternative Modals -->
+        @foreach($alternatives as $alternative)
+            <x-admin.alternative.delete-modal :alternative="$alternative" />
+        @endforeach
+
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
@@ -231,15 +236,9 @@
                                             </a>
 
                                             {{-- Delete --}}
-                                            <form action="{{ route('admin.alternative.destroy', $alternative->id) }}"
-                                                method="POST" onsubmit="return confirm('Delete this alternative?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-ghost btn-xs btn-circle text-error"
-                                                    type="submit" title="Delete">
-                                                    <x-lucide-trash class="w-4 h-4" />
-                                                </button>
-                                            </form>
+                                            <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete" onclick="document.getElementById('modal_delete_alternative_{{ $alternative->id }}').showModal()">
+                                                <x-lucide-trash class="w-4 h-4" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

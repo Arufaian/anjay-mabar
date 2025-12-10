@@ -108,6 +108,11 @@ class AlternativeController extends Controller
      */
     public function destroy(Alternative $alternative)
     {
-        //
+        // Alternative values akan terhapus otomatis karena cascade delete
+        $alternative->delete();
+        
+        return redirect()
+            ->route('admin.alternative.index')
+            ->with('success', 'Alternative "'.$alternative->name.'" has been deleted successfully.');
     }
 }
