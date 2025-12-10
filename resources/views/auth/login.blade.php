@@ -31,14 +31,9 @@
                 <label class="input validator">
 
                     <x-lucide-lock class="h-[1em] opacity-50" />
-                    <input name="password" id="password" type="password" required placeholder="Password" minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
+                    <input name="password" id="password" type="password" required placeholder="Password" minlength="8" />
                 </label>
-                <p class="validator-hint hidden">
-                    Must be more than 8 characters, including
-                    <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
-                </p>
+                <div class="validator-hint hidden">Must be at least 8 characters</div>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
             </div>
