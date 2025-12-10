@@ -1,5 +1,9 @@
 <x-app-layout>
 
+    @php
+        $criteriaCount = App\Models\Criteria::count();
+    @endphp
+
     <div class="px-4 sm:px-6 lg:px-8 py-4">
         <!-- Header Section -->
         <x-slot name="header">
@@ -12,7 +16,7 @@
                         </div>
 
                         <div class="flex gap-2">
-                            <button class="btn btn-primary btn-sm">
+                            <button class="btn btn-primary btn-sm" onclick="modal_create_alternative.showModal()">
                                 <x-lucide-plus class="w-4 h-4 mr-1" />
                                 Add Alternative
                             </button>
@@ -32,6 +36,9 @@
                 </x-alert>
             </x-toast>
         @endif
+
+        <!-- create alternative modal -->
+        <x-admin.alternative.create-modal />
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -191,11 +198,19 @@
 
                                     {{-- Criteria Values Count --}}
                                     <td>
-                                        <div class="flex items-center gap-2">
-                                            <x-badge color="accent"
+
+                                        @if ($alternative->alternativeValues->count() < $criteriaCount)
+                                            <x-badge color="warning"
                                                 size="sm">{{ $alternative->alternativeValues->count() }}
-                                                values</x-badge>
-                                        </div>
+                                                / {{ $criteriaCount }} values</x-badge>
+                                        @else
+                                            <div class="flex items-center gap-2">
+                                                <x-badge color="accent"
+                                                    size="sm">{{ $alternative->alternativeValues->count() }}
+                                                    values</x-badge>
+                                            </div>
+                                        @endif
+
                                     </td>
 
                                     {{-- Actions --}}

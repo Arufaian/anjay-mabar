@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAlternativeRequest;
 use App\Models\Alternative;
 use Illuminate\Http\Request;
 
@@ -50,9 +51,26 @@ class AlternativeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAlternativeRequest $request)
     {
-        //
+        // Generate automatic code
+        $lastCode = Alternative::orderByRaw('CAST(SUBSTRING(code, 2) AS UNSIGNED) DESC')->value('code');
+        $lastNumber = $lastCode ? intval(substr($lastCode, 1)) : 0;
+        $newCode = 'A' . ($lastNumber + 1);
+
+        // Create alternative
+        Alternative::create([
+            'code' => $newCode,
+            'name' => $request->name,
+            'type' => $request->type,
+            'model' => $request->model,
+            'year' => $request->year,
+            'description' => $request->description,
+        ]);
+
+        return redirect()
+            ->route('admin.alternative.index')
+            ->with('success', 'Alternative "' . $request->name . '" has been created successfully.');
     }
 
     /**
