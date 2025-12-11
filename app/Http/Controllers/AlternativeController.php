@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAlternativeRequest;
+use App\Http\Requests\UpdateAlternativeRequest;
 use App\Models\Alternative;
 use Illuminate\Http\Request;
 
@@ -92,15 +93,23 @@ class AlternativeController extends Controller
      */
     public function edit(Alternative $alternative)
     {
-        //
+        return view('admin.alternative.edit', [
+            'alternative' => $alternative,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alternative $alternative)
+    public function update(UpdateAlternativeRequest $request, Alternative $alternative)
     {
-        //
+        $validated = $request->validated();
+        
+        $alternative->update($validated);
+
+        return redirect()
+            ->route('admin.alternative.index')
+            ->with('success', 'Alternative "'.$alternative->name.'" has been updated successfully.');
     }
 
     /**
