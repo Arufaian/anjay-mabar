@@ -51,6 +51,12 @@ class Sidebar extends Component
                 'url' => route('admin.alternative.index'),
             ],
             [
+                'name' => 'Alternative Values',
+                'route' => 'admin.alternative-value.index',
+                'icon' => 'target',
+                'url' => route('admin.alternative-value.index'),
+            ],
+            [
                 'name' => 'Criteria',
                 'route' => 'admin.criteria.index',
                 'icon' => 'list-checks',

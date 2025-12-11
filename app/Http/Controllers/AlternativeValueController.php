@@ -12,7 +12,39 @@ class AlternativeValueController extends Controller
      */
     public function index()
     {
-        //
+        $alternativeValues = AlternativeValue::with(['alternative', 'criteria'])
+            ->when(request('search'), function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('value', 'like', "%{$search}%")
+                      ->orWhere('notes', 'like', "%{$search}%")
+                      ->orWhereHas('alternative', function ($subQuery) use ($search) {
+                          $subQuery->where('name', 'like', "%{$search}%")
+                                   ->orWhere('code', 'like', "%{$search}%");
+                      })
+                      ->orWhereHas('criteria', function ($subQuery) use ($search) {
+                          $subQuery->where('name', 'like', "%{$search}%")
+                                   ->orWhere('code', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->when(request('alternative_id'), function ($query, $alternativeId) {
+                $query->where('alternative_id', $alternativeId);
+            })
+            ->when(request('criteria_id'), function ($query, $criteriaId) {
+                $query->where('criteria_id', $criteriaId);
+            })
+            ->orderBy('alternative_id')
+            ->orderBy('criteria_id')
+            ->paginate(20);
+
+        $alternatives = \App\Models\Alternative::orderBy('code')->get();
+        $criteria = \App\Models\Criteria::orderBy('code')->get();
+
+        return view('admin.alternative-value.index', [
+            'alternativeValues' => $alternativeValues,
+            'alternatives' => $alternatives,
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
