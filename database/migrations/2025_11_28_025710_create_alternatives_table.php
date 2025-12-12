@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name', 150); // mis. "Yamaha Mio M3"
             $table->string('model')->nullable();
             $table->year('year')->nullable();
-            $table->text('notes')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

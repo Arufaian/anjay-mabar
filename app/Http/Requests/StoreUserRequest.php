@@ -33,4 +33,21 @@ class StoreUserRequest extends FormRequest
             'role' => ['required', 'string', 'in:admin,user,owner'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Name is required.',
+            'name.max' => 'Name must not exceed 255 characters.',
+            'email.required' => 'Email is required.',
+            'email.email' => 'Email must be a valid email address.',
+            'email.max' => 'Email must not exceed 255 characters.',
+            'email.unique' => 'Email is already taken.',
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least 8 characters long.',
+            'password.confirmed' => 'Password confirmation does not match.',
+            'role.required' => 'Role is required.',
+            'role.in' => 'Selected role is invalid.',
+        ];
+    }
 }

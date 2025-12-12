@@ -8,7 +8,18 @@ class AlternativeValue extends Model
 {
     protected $fillable = [
         'alternative_id',
-        'criterion_id',
+        'criteria_id',
         'value',
+        'notes',
     ];
+
+    public function alternative()
+    {
+        return $this->belongsTo(Alternative::class);
+    }
+
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class);
+    }
 }
