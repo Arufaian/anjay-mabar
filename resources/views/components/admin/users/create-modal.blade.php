@@ -1,5 +1,13 @@
 <dialog class="modal" id="modal_create_user">
+
+    @php
+        $hasOwner = \App\Models\User::where('role', 'owner')->exists();
+    @endphp
+
+
+
     <div class="modal-box">
+        {{ var_dump(isset($hasOwner)) }}
         <h3 class="font-bold text-lg mb-4">Add New User</h3>
         <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
@@ -72,7 +80,7 @@
                         <option value="">Select Role</option>
                         <option value="admin" @selected(old('role') === 'admin')>Admin</option>
                         <option value="user" @selected(old('role') === 'user')>User</option>
-                        @if (isset($hasOwner) && !$hasOwner)
+                        @if (!$hasOwner)
                             <option value="owner" @selected(old('role') === 'owner')>Owner</option>
                         @endif
                     </select>
@@ -80,7 +88,7 @@
                         <p class="text-error text-sm mt-1">{{ $message }}</p>
                     @enderror
                     <p class="label">Required</p>
-                    @if (isset($hasOwner) && $hasOwner)
+                    @if ($hasOwner)
                         <p class="text-warning text-sm mt-1">
                             <x-lucide-alert-triangle class="w-4 h-4 inline mr-1" />
                             Owner role is not available (already exists)

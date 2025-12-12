@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAlternativeRequest;
 use App\Http\Requests\UpdateAlternativeRequest;
 use App\Models\Alternative;
-use Illuminate\Http\Request;
 
 class AlternativeController extends Controller
 {
@@ -104,7 +103,7 @@ class AlternativeController extends Controller
     public function update(UpdateAlternativeRequest $request, Alternative $alternative)
     {
         $validated = $request->validated();
-        
+
         $alternative->update($validated);
 
         return redirect()
