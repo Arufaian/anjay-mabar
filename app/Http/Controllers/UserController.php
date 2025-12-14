@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -55,17 +57,33 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        // Hash the password
-        $validated['password'] = Hash::make($validated['password']);
+        try {
+            // Hash the password
+            $validated['password'] = Hash::make($validated['password']);
 
-        // Auto-verify email for admin-created users
-        $validated['email_verified_at'] = now();
+            // Auto-verify email for admin-created users
+            $validated['email_verified_at'] = now();
 
-        $user = User::create($validated);
+            $user = User::create($validated);
 
-        return redirect()
-            ->route('admin.users.index')
-            ->with('success', 'User created successfully.');
+            return redirect()
+                ->route('admin.users.index')
+                ->with('success', 'User created successfully.');
+        } catch (QueryException $e) {
+            // Handle database errors
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['database' => 'Database error: Unable to create user. Please try again.']);
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            Log::error('User creation failed: '.$e->getMessage());
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['general' => 'An error occurred while creating the user. Please try again.']);
+        }
     }
 
     /**

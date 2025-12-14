@@ -7,7 +7,6 @@
 
 
     <div class="modal-box">
-        {{ var_dump(isset($hasOwner)) }}
         <h3 class="font-bold text-lg mb-4">Add New User</h3>
         <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
