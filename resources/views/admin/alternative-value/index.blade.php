@@ -12,10 +12,10 @@
                         </div>
 
                         <div class="flex gap-2">
-                            <button class="btn btn-primary btn-sm" disabled>
+                            <a class="btn btn-primary btn-sm" href="{{ route('admin.alternative-value.create') }}">
                                 <x-lucide-plus class="w-4 h-4 mr-1" />
                                 Add Value
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -60,11 +60,9 @@
 
             </x-admin.stats-card>
 
-            <x-admin.stats-card :title="'completion rate'" :value="
-                $alternatives->count() > 0 
-                    ? round(($alternativeValues->count() / ($alternatives->count() * $criteria->count())) * 100, 1) . '%'
-                    : '0%'
-            " color="text-info">
+            <x-admin.stats-card :title="'completion rate'" :value="$alternatives->count() > 0
+                ? round(($alternativeValues->count() / ($alternatives->count() * $criteria->count())) * 100, 1) . '%'
+                : '0%'" color="text-info">
 
                 <x-slot name="icon">
                     <x-lucide-check-circle class="w-8 h-8" />
@@ -107,9 +105,9 @@
                         </div>
 
                         <button class="btn btn-primary btn-sm" type="submit">Filter</button>
-                        
-                        @if(request()->hasAny(['search', 'alternative_id', 'criteria_id']))
-                            <a href="{{ route('admin.alternative-value.index') }}" class="btn btn-ghost btn-sm">
+
+                        @if (request()->hasAny(['search', 'alternative_id', 'criteria_id']))
+                            <a class="btn btn-ghost btn-sm" href="{{ route('admin.alternative-value.index') }}">
                                 <x-lucide-x class="w-4 h-4" />
                                 Reset
                             </a>
@@ -144,29 +142,38 @@
                                     <td>
                                         <div class="flex items-center gap-2">
                                             <div>
-                                                <div class="font-mono text-sm font-bold">{{ $alternativeValue->alternative->code }}</div>
-                                                <div class="font-medium">{{ $alternativeValue->alternative->name }}</div>
+                                                <div class="font-mono text-sm font-bold">
+                                                    {{ $alternativeValue->alternative->code }}</div>
+                                                <div class="font-medium">{{ $alternativeValue->alternative->name }}
+                                                </div>
                                                 @switch($alternativeValue->alternative->type)
                                                     @case('matic')
                                                         <x-badge color="primary" size="xs">Matic</x-badge>
                                                     @break
+
                                                     @case('maxi series')
                                                         <x-badge color="warning" size="xs">Maxi</x-badge>
                                                     @break
+
                                                     @case('classy')
                                                         <x-badge color="info" size="xs">Classy</x-badge>
                                                     @break
+
                                                     @case('sport')
                                                         <x-badge color="error" size="xs">Sport</x-badge>
                                                     @break
+
                                                     @case('offroad')
                                                         <x-badge color="success" size="xs">Offroad</x-badge>
                                                     @break
+
                                                     @case('moped')
                                                         <x-badge color="neutral" size="xs">Moped</x-badge>
                                                     @break
+
                                                     @default
-                                                        <x-badge color="ghost" size="xs">{{ ucfirst($alternativeValue->alternative->type) }}</x-badge>
+                                                        <x-badge color="ghost"
+                                                            size="xs">{{ ucfirst($alternativeValue->alternative->type) }}</x-badge>
                                                 @endswitch
                                             </div>
                                         </div>
@@ -176,10 +183,12 @@
                                     <td>
                                         <div class="flex items-center gap-2">
                                             <div>
-                                                <div class="font-mono text-sm font-bold">{{ $alternativeValue->criteria->code }}</div>
+                                                <div class="font-mono text-sm font-bold">
+                                                    {{ $alternativeValue->criteria->code }}</div>
                                                 <div class="font-medium">{{ $alternativeValue->criteria->name }}</div>
-                                                @if($alternativeValue->criteria->type)
-                                                    <x-badge color="outline" size="xs">{{ $alternativeValue->criteria->type }}</x-badge>
+                                                @if ($alternativeValue->criteria->type)
+                                                    <x-badge color="outline"
+                                                        size="xs">{{ $alternativeValue->criteria->type }}</x-badge>
                                                 @endif
                                             </div>
                                         </div>
@@ -187,17 +196,16 @@
 
                                     {{-- Value --}}
                                     <td>
-                                        <div class="text-right">
+                                        <div class="text-left">
                                             <div class="font-bold text-lg">
                                                 {{ number_format($alternativeValue->value, $alternativeValue->value == floor($alternativeValue->value) ? 0 : 2) }}
                                             </div>
-                                            @if($alternativeValue->criteria->unit)
-                                                <div class="text-xs text-base-content/60">{{ $alternativeValue->criteria->unit }}</div>
+                                            @if ($alternativeValue->criteria->unit)
+                                                <div class="text-xs text-base-content/60">
+                                                    {{ $alternativeValue->criteria->unit }}</div>
                                             @endif
                                         </div>
                                     </td>
-
-
 
                                     {{-- Actions --}}
                                     <td class="text-center">
@@ -213,43 +221,45 @@
                                             </button>
 
                                             {{-- Delete --}}
-                                            <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete" disabled>
+                                            <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete"
+                                                disabled>
                                                 <x-lucide-trash class="w-4 h-4" />
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-center py-10" colspan="6">
-                                        <div class="text-base-content/50">
-                                            <x-lucide-target class="w-10 h-10 mx-auto mb-2" />
-                                            <p>No alternative values found</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                                @empty
+                                    <tr>
+                                        <td class="text-center py-10" colspan="6">
+                                            <div class="text-base-content/50">
+                                                <x-lucide-target class="w-10 h-10 mx-auto mb-2" />
+                                                <p>No alternative values found</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
 
-                {{-- Pagination --}}
-                @if ($alternativeValues->hasPages())
-                    <div class="p-4 border-t border-base-200">
-                        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                            <div class="text-sm text-base-content/70">
-                                Showing {{ $alternativeValues->firstItem() }} to {{ $alternativeValues->lastItem() }} of
-                                {{ $alternativeValues->total() }} results
-                            </div>
-                            <div class="join">
-                                {{ $alternativeValues->links() }}
+                    {{-- Pagination --}}
+                    @if ($alternativeValues->hasPages())
+                        <div class="p-4 border-t border-base-200">
+                            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <div class="text-sm text-base-content/70">
+                                    Showing {{ $alternativeValues->firstItem() }} to {{ $alternativeValues->lastItem() }}
+                                    of
+                                    {{ $alternativeValues->total() }} results
+                                </div>
+                                <div class="join">
+                                    {{ $alternativeValues->links() }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
 
+                </div>
             </div>
-        </div>
 
-    </div>
-</x-app-layout>
+        </div>
+    </x-app-layout>

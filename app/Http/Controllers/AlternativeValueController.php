@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAlternativeValueRequest;
 use App\Models\AlternativeValue;
 use Illuminate\Http\Request;
 
@@ -52,15 +53,27 @@ class AlternativeValueController extends Controller
      */
     public function create()
     {
-        //
+        $alternatives = \App\Models\Alternative::orderBy('code')->get();
+        $criteria = \App\Models\Criteria::orderBy('code')->get();
+
+        return view('admin.alternative-value.create', [
+            'alternatives' => $alternatives,
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAlternativeValueRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        AlternativeValue::create($validated);
+
+        return redirect()
+            ->route('admin.alternative-value.index')
+            ->with('success', 'Alternative value created successfully.');
     }
 
     /**
