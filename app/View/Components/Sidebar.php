@@ -5,7 +5,6 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -24,6 +23,7 @@ class Sidebar extends Component
     public function render(): View|Closure|string
     {
         $user = Auth::user();
+
         return view('components.sidebar', [
             'menuItems' => $this->getMenuItemsByRole($user->role),
             'currentRole' => $user->role,
@@ -35,7 +35,7 @@ class Sidebar extends Component
      */
     private function getMenuItemsByRole(string $role): array
     {
-        return match($role) {
+        return match ($role) {
             'admin' => $this->getAdminMenuItems(),
             'user' => $this->getUserMenuItems(),
             'owner' => $this->getOwnerMenuItems(),

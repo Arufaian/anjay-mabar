@@ -50,7 +50,7 @@ class MooraService
                 $value = $alternative->alternativeValues()
                     ->where('criteria_id', $criterion->id)
                     ->first();
-                
+
                 $row[$criterion->id] = $value ? (float) $value->value : 0;
             }
             $matrix[$alternative->id] = $row;
@@ -65,10 +65,10 @@ class MooraService
     private function normalizeMatrix(array $matrix): array
     {
         $normalized = [];
-        
+
         // Get all criteria IDs
         $criteriaIds = array_keys(reset($matrix));
-        
+
         // Calculate denominator for each criterion
         $denominators = [];
         foreach ($criteriaIds as $criterionId) {
@@ -124,8 +124,8 @@ class MooraService
     private function calculateScores(array $weightedMatrix, Collection $criteria): array
     {
         $scores = [];
-        $benefitCriteria = $criteria->filter(fn($c) => $c->type === 'benefit')->pluck('id')->toArray();
-        $costCriteria = $criteria->filter(fn($c) => $c->type === 'cost')->pluck('id')->toArray();
+        $benefitCriteria = $criteria->filter(fn ($c) => $c->type === 'benefit')->pluck('id')->toArray();
+        $costCriteria = $criteria->filter(fn ($c) => $c->type === 'cost')->pluck('id')->toArray();
 
         foreach ($weightedMatrix as $alternativeId => $row) {
             $benefitSum = 0;
@@ -151,7 +151,7 @@ class MooraService
     private function rankAlternatives(Collection $alternatives, array $scores): array
     {
         $ranked = [];
-        
+
         foreach ($alternatives as $alternative) {
             $ranked[] = [
                 'alternative' => $alternative,
@@ -161,7 +161,7 @@ class MooraService
         }
 
         // Sort by score (descending)
-        usort($ranked, fn($a, $b) => $b['score'] <=> $a['score']);
+        usort($ranked, fn ($a, $b) => $b['score'] <=> $a['score']);
 
         // Assign ranks
         foreach ($ranked as $index => &$item) {
@@ -178,7 +178,7 @@ class MooraService
     {
         try {
             $result = $this->calculate();
-            
+
             return [
                 'success' => true,
                 'data' => [
@@ -187,7 +187,7 @@ class MooraService
                     'total_criteria' => count($result['criteria']),
                     'scores_count' => count($result['scores']),
                     'calculation_details' => $result,
-                ]
+                ],
             ];
         } catch (\Exception $e) {
             return [
@@ -216,7 +216,7 @@ class MooraService
         }
 
         if (abs($totalWeight - 1.0) > 0.001) {
-            $issues[] = "Total weights must equal 1.00, current total: " . number_format($totalWeight, 4);
+            $issues[] = 'Total weights must equal 1.00, current total: '.number_format($totalWeight, 4);
         }
 
         return [
