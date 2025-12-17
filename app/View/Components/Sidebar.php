@@ -85,6 +85,12 @@ class Sidebar extends Component
                 'icon' => 'scale',
                 'url' => route('admin.weights.index'),
             ],
+            [
+                'name' => 'MOORA Results',
+                'route' => 'admin.moora.index',
+                'icon' => 'calculator',
+                'url' => route('admin.moora.index'),
+            ],
         ];
     }
 
