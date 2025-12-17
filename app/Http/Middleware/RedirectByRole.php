@@ -23,6 +23,8 @@ class RedirectByRole
 
         return match ($user->role) {
             'admin' => redirect()->route('admin.dashboard'),
+            'user' => redirect()->route('user.dashboard'),
+            'owner' => redirect()->route('owner.dashboard'),
             default => abort(403, 'Unauthorized action.'),
         };
     }

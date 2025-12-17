@@ -25,6 +25,30 @@ return Application::configure(basePath: dirname(__DIR__))
                         $router->group([], $file);
                     }
                 });
+
+            // grouping user routes
+            $router->middleware(['web', 'auth', 'role:user'])
+                ->prefix('user')
+                ->name('user.')
+                ->group(function () use ($router) {
+                    $userRoutesPath = __DIR__.'/../routes/user';
+
+                    foreach (glob($userRoutesPath.'/*.php') as $file) {
+                        $router->group([], $file);
+                    }
+                });
+
+            // grouping owner routes
+            $router->middleware(['web', 'auth', 'role:owner'])
+                ->prefix('owner')
+                ->name('owner.')
+                ->group(function () use ($router) {
+                    $ownerRoutesPath = __DIR__.'/../routes/owner';
+                    foreach (glob($ownerRoutesPath.'/*.php') as $file) {
+                        $router->group([], $file);
+                    }
+                });
+
         },
 
         commands: __DIR__.'/../routes/console.php',
