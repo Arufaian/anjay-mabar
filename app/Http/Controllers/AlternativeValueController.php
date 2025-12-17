@@ -118,6 +118,10 @@ class AlternativeValueController extends Controller
      */
     public function destroy(AlternativeValue $alternativeValue)
     {
-        //
+        $alternativeValue->delete();
+
+        return redirect()
+            ->route('admin.alternative-value.index')
+            ->with('success', 'Alternative value deleted successfully.');
     }
 }

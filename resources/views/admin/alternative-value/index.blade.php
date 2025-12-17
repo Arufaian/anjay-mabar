@@ -209,7 +209,12 @@
 
                                     {{-- Actions --}}
                                     <td class="text-center">
-                                        <div class="flex justify-center gap-1">
+                                        <div class="flex justify-end gap-1">
+                                            {{-- View --}}
+                                            <button class="btn btn-ghost btn-xs btn-circle" title="View" disabled>
+                                                <x-lucide-eye class="w-4 h-4 text-info" />
+                                            </button>
+
                                             {{-- Edit --}}
                                             <a href="{{ route('admin.alternative-value.edit', $alternativeValue->id) }}" class="btn btn-ghost btn-xs btn-circle" title="Edit">
                                                 <x-lucide-pencil class="w-4 h-4 text-warning" />
@@ -217,7 +222,7 @@
 
                                             {{-- Delete --}}
                                             <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete"
-                                                disabled>
+                                                onclick="modal_delete_alternative_value_{{ $alternativeValue->id }}.showModal()">
                                                 <x-lucide-trash class="w-4 h-4" />
                                             </button>
                                         </div>
@@ -257,4 +262,9 @@
             </div>
 
         </div>
+
+        <!-- Delete Alternative Value Modals -->
+        @foreach($alternativeValues as $alternativeValue)
+            <x-admin.alternative-value.delete-modal :alternativeValue="$alternativeValue" />
+        @endforeach
     </x-app-layout>

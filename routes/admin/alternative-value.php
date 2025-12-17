@@ -9,4 +9,5 @@ Route::prefix('alternative-value')->name('alternative-value.')->group(function (
     Route::post('/', [AlternativeValueController::class, 'store'])->name('store');
     Route::get('/{alternativeValue}/edit', [AlternativeValueController::class, 'edit'])->name('edit');
     Route::put('/{alternativeValue}', [AlternativeValueController::class, 'update'])->name('update');
+    Route::delete('/{alternativeValue}', [AlternativeValueController::class, 'destroy'])->name('destroy');
 });
