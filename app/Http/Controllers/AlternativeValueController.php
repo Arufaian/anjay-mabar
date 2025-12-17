@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAlternativeValueRequest;
+use App\Http\Requests\UpdateAlternativeValueRequest;
 use App\Models\AlternativeValue;
-use Illuminate\Http\Request;
 
 class AlternativeValueController extends Controller
 {
@@ -89,15 +89,28 @@ class AlternativeValueController extends Controller
      */
     public function edit(AlternativeValue $alternativeValue)
     {
-        //
+        $alternatives = \App\Models\Alternative::orderBy('code')->get();
+        $criteria = \App\Models\Criteria::orderBy('code')->get();
+
+        return view('admin.alternative-value.edit', [
+            'alternativeValue' => $alternativeValue,
+            'alternatives' => $alternatives,
+            'criteria' => $criteria,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AlternativeValue $alternativeValue)
+    public function update(UpdateAlternativeValueRequest $request, AlternativeValue $alternativeValue)
     {
-        //
+        $validated = $request->validated();
+
+        $alternativeValue->update($validated);
+
+        return redirect()
+            ->route('admin.alternative-value.index')
+            ->with('success', 'Alternative value updated successfully.');
     }
 
     /**

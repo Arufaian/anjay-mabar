@@ -126,7 +126,7 @@
                                 <th>Alternative</th>
                                 <th>Criteria</th>
                                 <th>Value</th>
-                                <th class="text-right w-28">Actions</th>
+                                <th class="text-center w-28">Actions</th>
                             </tr>
                         </thead>
 
@@ -209,16 +209,11 @@
 
                                     {{-- Actions --}}
                                     <td class="text-center">
-                                        <div class="flex justify-end gap-1">
-                                            {{-- View --}}
-                                            <button class="btn btn-ghost btn-xs btn-circle" title="View" disabled>
-                                                <x-lucide-eye class="w-4 h-4 text-info" />
-                                            </button>
-
+                                        <div class="flex justify-center gap-1">
                                             {{-- Edit --}}
-                                            <button class="btn btn-ghost btn-xs btn-circle" title="Edit" disabled>
+                                            <a href="{{ route('admin.alternative-value.edit', $alternativeValue->id) }}" class="btn btn-ghost btn-xs btn-circle" title="Edit">
                                                 <x-lucide-pencil class="w-4 h-4 text-warning" />
-                                            </button>
+                                            </a>
 
                                             {{-- Delete --}}
                                             <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete"

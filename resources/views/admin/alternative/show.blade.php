@@ -75,12 +75,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="flex gap-1">
-                                <button class="btn btn-ghost btn-sm btn-circle" title="Edit">
-                                    <x-lucide-pencil class="w-4 h-4 text-warning" />
-                                </button>
-                            </div>
                         </div>
 
                         <div class="divider"></div>
@@ -172,17 +166,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-
-                                            <div class="card-actions justify-end mt-3">
-                                                <button class="btn btn-ghost btn-xs">
-                                                    <x-lucide-edit class="w-3 h-3 mr-1" />
-                                                    Edit
-                                                </button>
-                                                <button class="btn btn-ghost btn-xs text-error">
-                                                    <x-lucide-trash class="w-3 h-3 mr-1" />
-                                                    Delete
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
