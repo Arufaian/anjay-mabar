@@ -21,24 +21,27 @@ class AlternativeSeeder extends Seeder
         $alternatives = [
             [
                 'code' => 'ALT-001',
+                'type' => 'matic',
                 'name' => 'Yamaha Mio M3',
                 'model' => 'Mio M3',
                 'year' => 2024,
-                'notes' => 'Contoh data dummy',
+                'description' => 'Contoh data dummy',
             ],
             [
                 'code' => 'ALT-002',
+                'type' => 'matic',
                 'name' => 'Yamaha Fazzio',
                 'model' => 'Fazzio',
                 'year' => 2024,
-                'notes' => 'Contoh data dummy',
+                'description' => 'Contoh data dummy',
             ],
             [
                 'code' => 'ALT-003',
+                'type' => 'maxi series',
                 'name' => 'Yamaha NMax',
                 'model' => 'NMax 155',
                 'year' => 2024,
-                'notes' => 'Contoh data dummy',
+                'description' => 'Contoh data dummy',
             ],
         ];
 

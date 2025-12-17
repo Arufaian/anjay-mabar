@@ -32,6 +32,16 @@
             </x-toast>
         @endif
 
+        @if ($errors->any())
+            <x-toast>
+                <x-alert type="error" :message="$errors->first()" :title="__('Validation Error')">
+                    <x-slot name="icon">
+                        <x-lucide-alert-circle class="w-6 h-6" />
+                    </x-slot>
+                </x-alert>
+            </x-toast>
+        @endif
+
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
@@ -181,16 +191,17 @@
                                             </a>
 
                                             {{-- Delete --}}
-                                            @if($user->role !== 'owner')
-                                                <button class="btn btn-ghost btn-xs btn-circle text-error" title="Delete" onclick="document.getElementById('modal_delete_user_{{ $user->id }}').showModal()">
+                                            @if ($user->role !== 'owner')
+                                                <button class="btn btn-ghost btn-xs btn-circle text-error"
+                                                    title="Delete"
+                                                    onclick="document.getElementById('modal_delete_user_{{ $user->id }}').showModal()">
                                                     <x-lucide-trash class="w-4 h-4" />
                                                 </button>
                                             @endif
 
-                                            @if($user->role === 'owner')
-                                                <button class="btn btn-ghost btn-xs btn-circle text-error" 
-                                                    title="Cannot delete owner"
-                                                    disabled>
+                                            @if ($user->role === 'owner')
+                                                <button class="btn btn-ghost btn-xs btn-circle text-error"
+                                                    title="Cannot delete owner" disabled>
                                                     <x-lucide-trash class="w-4 h-4" />
                                                 </button>
                                             @endif
@@ -233,8 +244,23 @@
         <!-- Create User Modal -->
         <x-admin.users.create-modal />
 
+        <!-- JavaScript for Modal Auto-Open on Validation Errors -->
+        @if ($errors->any())
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    @if ($errors->first())
+                        // Open the create user modal if there are validation errors
+                        const modal = document.getElementById('modal_create_user');
+                        if (modal) {
+                            modal.showModal();
+                        }
+                    @endif
+                });
+            </script>
+        @endif
+
         <!-- Delete User Modals -->
-        @foreach($users as $user)
+        @foreach ($users as $user)
             <x-admin.users.delete-modal :user="$user" />
         @endforeach
 

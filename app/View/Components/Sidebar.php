@@ -35,7 +35,7 @@ class Sidebar extends Component
             [
                 'name' => 'Dashboard',
                 'route' => 'admin.dashboard',
-                'icon' => 'layout-dashboard',
+                'icon' => 'gauge',
                 'url' => route('admin.dashboard'),
             ],
             [
@@ -43,6 +43,18 @@ class Sidebar extends Component
                 'route' => 'admin.users.index',
                 'icon' => 'users',
                 'url' => route('admin.users.index'),
+            ],
+            [
+                'name' => 'Alternatives',
+                'route' => 'admin.alternative.index',
+                'icon' => 'motorbike',
+                'url' => route('admin.alternative.index'),
+            ],
+            [
+                'name' => 'Alternative Values',
+                'route' => 'admin.alternative-value.index',
+                'icon' => 'target',
+                'url' => route('admin.alternative-value.index'),
             ],
             [
                 'name' => 'Criteria',

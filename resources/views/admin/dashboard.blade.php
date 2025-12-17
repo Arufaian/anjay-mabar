@@ -19,11 +19,14 @@
             <x-stats-card value="{{ App\Models\User::count() }}" title="Total Users" subtitle="Registered users"
                 :icon="'users'" color="primary" route="users" />
 
+            <x-stats-card value="{{ App\Models\Alternative::count() }}" title="Total Alternatives" subtitle="Registered alternatives"
+                :icon="'motorbike'" color="error" route="alternative" />
+
             <x-stats-card value="{{ App\Models\Criteria::count() }}" title="Total Criteria"
                 subtitle="Registered criteria" :icon="'check-square'" color="accent" route="criteria" />
 
-            <x-stats-card title="Bobot kriteria"
-                subtitle="Ubah bobot kriteria" :icon="'scale'" color="warning" route="weights" />
+            <x-stats-card title="Bobot kriteria" subtitle="Ubah bobot kriteria" :icon="'scale'" color="warning"
+                route="weights" />
 
         </div>
     </div>
