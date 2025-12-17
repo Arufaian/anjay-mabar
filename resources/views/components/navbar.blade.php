@@ -1,5 +1,4 @@
 <nav class="navbar w-full bg-base-100 border-l border-base-300">
-
     <div class="flex items-center justify-between w-full px-4">
 
         <label class="btn btn-square btn-ghost" for="my-drawer-4" aria-label="open sidebar">

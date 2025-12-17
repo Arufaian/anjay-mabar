@@ -16,11 +16,11 @@
 
         <div class="menu w-full grow">
             <ul>
-                <!-- Admin Menu Items -->
-                @foreach ($adminMenuItems as $item)
-                    <li >
+                <!-- Role-based Menu Items -->
+                @foreach ($menuItems as $item)
+                    <li>
                         <a class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-2 my-2 {{ request()->routeIs($item['route']) ? 'menu-active bg-primary dark:text-base-100' : '' }}" data-tip="{{ $item['name'] }}"
-                            href="{{ route($item['route']) }}">
+                            href="{{ $item['url'] }}">
                             <x-dynamic-component class="w-4 h-4" :component="'lucide-' . $item['icon']" />
 
                             <span class="is-drawer-close:hidden">{{ $item['name'] }}</span>

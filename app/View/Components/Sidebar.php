@@ -4,6 +4,8 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -21,9 +23,24 @@ class Sidebar extends Component
      */
     public function render(): View|Closure|string
     {
+        $user = Auth::user();
         return view('components.sidebar', [
-            'adminMenuItems' => $this->getAdminMenuItems(),
+            'menuItems' => $this->getMenuItemsByRole($user->role),
+            'currentRole' => $user->role,
         ]);
+    }
+
+    /**
+     * Get menu items by role.
+     */
+    private function getMenuItemsByRole(string $role): array
+    {
+        return match($role) {
+            'admin' => $this->getAdminMenuItems(),
+            'user' => $this->getUserMenuItems(),
+            'owner' => $this->getOwnerMenuItems(),
+            default => [],
+        };
     }
 
     /**
@@ -72,6 +89,52 @@ class Sidebar extends Component
     }
 
     /**
+     * Get user menu items.
+     */
+    public function getUserMenuItems(): array
+    {
+        return [
+            [
+                'name' => 'Dashboard',
+                'route' => 'user.dashboard',
+                'icon' => 'gauge',
+                'url' => route('user.dashboard'),
+            ],
+            [
+                'name' => 'Profile',
+                'route' => 'profile.edit',
+                'icon' => 'user',
+                'url' => route('profile.edit'),
+            ],
+        ];
+    }
+
+    /**
+     * Get owner menu items.
+     */
+    public function getOwnerMenuItems(): array
+    {
+        return [
+            [
+                'name' => 'Dashboard',
+                'route' => 'owner.dashboard',
+                'icon' => 'gauge',
+                'url' => route('owner.dashboard'),
+            ],
+            [
+                'name' => 'Profile',
+                'route' => 'profile.edit',
+                'icon' => 'user',
+                'url' => route('profile.edit'),
+            ],
+        ];
+    }
+
+    /**
      * Check if menu item is active.
      */
+    public function isActive(string $route): bool
+    {
+        return request()->routeIs($route);
+    }
 }
