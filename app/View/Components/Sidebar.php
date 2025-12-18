@@ -139,6 +139,12 @@ class Sidebar extends Component
                 'icon' => 'user',
                 'url' => route('profile.edit'),
             ],
+            [
+                'name' => 'all users',
+                'route' => 'owner.users.index',
+                'icon' => 'users',
+                'url' => route('owner.users.index'),
+            ]
         ];
     }
 

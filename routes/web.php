@@ -20,4 +20,5 @@ require __DIR__.'/admin/alternative.php';
 require __DIR__.'/admin/alternative-value.php';
 require __DIR__.'/admin/weight.php';
 require __DIR__.'/user/moora.php';
+require __DIR__.'/owner/users.php';
 require __DIR__.'/auth.php';
