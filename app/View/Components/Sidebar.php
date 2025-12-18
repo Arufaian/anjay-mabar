@@ -107,6 +107,12 @@ class Sidebar extends Component
                 'url' => route('user.dashboard'),
             ],
             [
+                'name' => 'Motorcycle Analysis',
+                'route' => 'user.moora.create',
+                'icon' => 'calculator',
+                'url' => route('user.moora.create'),
+            ],
+            [
                 'name' => 'Profile',
                 'route' => 'profile.edit',
                 'icon' => 'user',

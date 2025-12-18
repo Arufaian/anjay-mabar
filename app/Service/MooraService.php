@@ -198,6 +198,50 @@ class MooraService
     }
 
     /**
+     * Calculate MOORA for user with budget filtering
+     */
+    public function calculateForUser(float $minBudget, float $maxBudget): array
+    {
+        $priceCriteria = Criteria::where('code', 'C1')->first();
+        
+        // Filter alternatif berdasarkan budget
+        $alternatives = Alternative::whereHas('alternativeValues', function($query) use ($priceCriteria, $minBudget, $maxBudget) {
+            $query->where('criteria_id', $priceCriteria->id)
+                  ->whereBetween('value', [$minBudget, $maxBudget]);
+        })->with(['alternativeValues.criteria', 'alternativeValues.criteria.weight'])->get();
+
+        if ($alternatives->isEmpty()) {
+            return [
+                'success' => false,
+                'error' => 'Tidak ada alternatif yang tersedia dalam budget range tersebut.',
+                'alternatives_count' => 0,
+            ];
+        }
+
+        $criteria = Criteria::with('weight')->get();
+        $decisionMatrix = $this->buildDecisionMatrix($alternatives, $criteria);
+        $normalizedMatrix = $this->normalizeMatrix($decisionMatrix);
+        $weightedMatrix = $this->applyWeights($normalizedMatrix, $criteria);
+        $scores = $this->calculateScores($weightedMatrix, $criteria);
+        $rankedAlternatives = $this->rankAlternatives($alternatives, $scores);
+
+        return [
+            'success' => true,
+            'data' => [
+                'best_alternative' => $rankedAlternatives[0] ?? null,
+                'total_alternatives' => count($alternatives),
+                'total_criteria' => count($criteria),
+                'budget_range' => [
+                    'min' => $minBudget,
+                    'max' => $maxBudget,
+                    'filtered_count' => count($alternatives)
+                ],
+                'ranked_alternatives' => $rankedAlternatives,
+            ],
+        ];
+    }
+
+    /**
      * Validate weights configuration
      */
     public function validateWeights(): array
