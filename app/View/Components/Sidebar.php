@@ -5,7 +5,6 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -24,6 +23,7 @@ class Sidebar extends Component
     public function render(): View|Closure|string
     {
         $user = Auth::user();
+
         return view('components.sidebar', [
             'menuItems' => $this->getMenuItemsByRole($user->role),
             'currentRole' => $user->role,
@@ -35,7 +35,7 @@ class Sidebar extends Component
      */
     private function getMenuItemsByRole(string $role): array
     {
-        return match($role) {
+        return match ($role) {
             'admin' => $this->getAdminMenuItems(),
             'user' => $this->getUserMenuItems(),
             'owner' => $this->getOwnerMenuItems(),
@@ -85,6 +85,12 @@ class Sidebar extends Component
                 'icon' => 'scale',
                 'url' => route('admin.weights.index'),
             ],
+            [
+                'name' => 'MOORA Results',
+                'route' => 'admin.moora.index',
+                'icon' => 'calculator',
+                'url' => route('admin.moora.index'),
+            ],
         ];
     }
 
@@ -99,6 +105,12 @@ class Sidebar extends Component
                 'route' => 'user.dashboard',
                 'icon' => 'gauge',
                 'url' => route('user.dashboard'),
+            ],
+            [
+                'name' => 'Motorcycle Analysis',
+                'route' => 'user.moora.create',
+                'icon' => 'calculator',
+                'url' => route('user.moora.create'),
             ],
             [
                 'name' => 'Profile',
@@ -127,6 +139,12 @@ class Sidebar extends Component
                 'icon' => 'user',
                 'url' => route('profile.edit'),
             ],
+            [
+                'name' => 'all users',
+                'route' => 'owner.users.index',
+                'icon' => 'users',
+                'url' => route('owner.users.index'),
+            ]
         ];
     }
 

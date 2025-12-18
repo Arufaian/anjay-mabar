@@ -47,6 +47,9 @@ class UserController extends Controller
         // Check if owner exists for modal
         $hasOwner = User::where('role', 'owner')->exists();
 
+        if (request()->routeIs('owner.*')) {
+            return view('owner.users.index', compact('users', 'hasOwner'));
+        }
         return view('admin.users.index', compact('users', 'hasOwner'));
     }
 
